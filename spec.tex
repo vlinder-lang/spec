@@ -1,0 +1,29 @@
+\documentclass{memoir}
+
+\nonzeroparskip
+\setlength{\parindent}{0pt}
+
+\newcommand{\var}[1]{\emph{#1}}
+\newcommand{\cp}[1]{U+#1}
+
+\begin{document}
+
+\chapter{Source code acquisition}
+
+The implementation acquires source code by following the following steps:
+
+\begin{enumerate}
+  \item The entire source file is read as a sequence of bytes from now on
+        referred to as \var{source}.
+  \item If \var{source} is not a UTF-8 encoding, the program is ill-formed.
+  \item Every instance of \cp{000D} followed by \cp{000A} in \var{source} is
+        replaced by \cp{000A}. The result of this operation is from now on
+        referred to as \var{source}.
+  \item If \var{source} contains a code point in the ranges
+        [\cp{0000}, \cp{0009}] and [\cp{000B}, \cp{001F}], the program is
+        ill-formed.
+\end{enumerate}
+
+The acquired source code is what is now known as \var{source}.
+
+\end{document}
