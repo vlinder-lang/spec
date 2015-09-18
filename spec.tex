@@ -1,4 +1,4 @@
-\documentclass{memoir}
+\documentclass[12pt]{memoir}
 
 \nonzeroparskip
 \setlength{\parindent}{0pt}
@@ -24,6 +24,73 @@ The implementation acquires source code by following the following steps:
         ill-formed.
 \end{enumerate}
 
-The acquired source code is what is now known as \var{source}.
+The acquired source code is what is now referred to as \var{source}.
+
+\chapter{Expressions}
+
+\begin{verbatim}
+<expr> = <call-expr>
+\end{verbatim}
+
+\section{Call expressions}
+
+\begin{verbatim}
+<call-expr> = <value-call-expr>
+            | <type-call-expr>
+            | <primary-expr>
+\end{verbatim}
+
+\subsection{Value call expressions}
+
+\begin{verbatim}
+<value-call-expr> = <call-expr> '(' <expr> %% ',' ')'
+\end{verbatim}
+
+\subsection{Type call expressions}
+
+\begin{verbatim}
+<type-call-expr> = <call-expr> '[' <type-expr> %% ',' ']'
+\end{verbatim}
+
+\section{Primary expressions}
+
+\begin{verbatim}
+<primary-expr> = <block-expr>
+               | <name-expr>
+               | <string-expr>
+               | <struct-expr>
+\end{verbatim}
+
+\subsection{Block expressions}
+
+\begin{verbatim}
+<block-expr> = '{' <block-expr-stmt>* '}'
+<block-expr-stmt> = <decl> | <expr> ';'
+\end{verbatim}
+
+\subsection{Boolean expressions}
+
+\begin{verbatim}
+<boolean-expr> = 'true' | 'false'
+\end{verbatim}
+
+\subsection{Name expressions}
+
+\begin{verbatim}
+<name-expr> = <name>
+\end{verbatim}
+
+\subsection{String expressions}
+
+\begin{verbatim}
+<string-expr> = <string>
+\end{verbatim}
+
+\subsection{Struct expressions}
+
+\begin{verbatim}
+<struct-expr> = <type-expr> '{' <struct-expr-field> %% ',' '}'
+<struct-expr-field> = <identifier> ':' <expr>
+\end{verbatim}
 
 \end{document}
