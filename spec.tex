@@ -16,12 +16,9 @@ The implementation acquires source code by following the following steps:
   \item The entire source file is read as a sequence of bytes from now on
         referred to as \var{source}.
   \item If \var{source} is not a UTF-8 encoding, the program is ill-formed.
-  \item The \texttt{sed} command
-\begin{verbatim}
-s/\r$//
-\end{verbatim}
-        is performed on \var{source}. The result of this operation is from now
-        on referred to as \var{source}.
+  \item Every instance of code point sequence \cp{000D} \cp{000A} in
+        \var{source} is replaced with \cp{000A}. The result of this operation
+        is from now on referred to as \var{source}.
   \item If \var{source} contains a code point in one of the ranges
         [\cp{0000}, \cp{0009}] and [\cp{000B}, \cp{001F}], the program is
         ill-formed.
@@ -48,7 +45,7 @@ The following words are reserved and cannot be used as identifiers:
 \end{itemize}
 
 In addition, the reserved words \texttt{PIC} and \texttt{PICTURE} are
-case-insensitive as per COBOL.
+case-insensitive.
 
 \chapter{Expressions}
 
